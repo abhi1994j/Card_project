@@ -3,9 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>User Info Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .info {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 15px;
+            font-size: 18px;
+            border-bottom: 1px solid #ddd;
+        }
+        .info:last-child {
+            border-bottom: none;
+        }
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+        .value {
+            color: #222;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Card Project</h1>
+    <div class="container">
+        <h1>User Information Card</h1>
+        <div class="info">
+            <span class="label">First Name:</span>
+            <span class="value" id="first_name"></span>
+        </div>
+        <div class="info">
+            <span class="label">Last Name:</span>
+            <span class="value" id="last_name"></span>
+        </div>
+        <div class="info">
+            <span class="label">Country:</span>
+            <span class="value" id="country"></span>
+        </div>
+        <div class="info">
+            <span class="label">State:</span>
+            <span class="value" id="state"></span>
+        </div>
+    </div>
+
+    <script>
+        const userInfo = {
+            firstName: "Abhishek",
+            lastName: "Chatterjee",
+            country: "India",
+            state: "West Bengal"
+        };
+
+        localStorage.setItem("user", JSON.stringify(userInfo));
+        const info = JSON.parse(localStorage.getItem("user")) || {};
+
+        document.getElementById("first_name").innerText = info.firstName || "N/A";
+        document.getElementById("last_name").innerText = info.lastName || "N/A";
+        document.getElementById("country").innerText = info.country || "N/A";
+        document.getElementById("state").innerText = info.state || "N/A";
+    </script>
 </body>
 </html>
